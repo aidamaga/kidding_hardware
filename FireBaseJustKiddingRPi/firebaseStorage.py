@@ -21,34 +21,54 @@ MAC_Address = "laVJcAzoVI9GHFS9lBWJ"
 date = datetime.datetime.now()
 doc_ref = db.collection(u'Histories').document(MAC_Address)
 
-jsonobj = [ {
+jsonHistory = [ {
             'Activity_Date': str(date),
             'Activity_Name': "Histoire",
             'Activity_Theme': "Cowboy",
-            'Activity_Pourcentage': 80
         },
         {
             'Activity_Date': "2019-01-09 15:47:08",
             'Activity_Name': "Histoire",
             'Activity_Theme': "Cowboy",
-            'Activity_Pourcentage': 80
         }
 ]
-s = json.dumps(jsonobj)
+s = json.dumps(jsonHistory)
 jdata = json.loads(s)
 doc_ref.set({
     u'Activities': jdata,
 })
 
-jsonobj.append( {
+jsonHistory.append( {
             'Activity_Date': "2019-01-09 15:47:08",
             'Activity_Name': "Histoire",
             'Activity_Theme': "Cowboy",
-            'Activity_Pourcentage': 80
         })
 
-s = json.dumps(jsonobj)
+s = json.dumps(jsonHistory)
 jdata = json.loads(s)
 doc_ref.set({
     u'Activities': jdata,
+})
+
+doc_ref = db.collection(u'Appetences').document(MAC_Address)
+
+jsonAppetence = {"Chanson": {
+                        "Comptines": 80,
+                        "Disney": 50
+                                 },
+                "Culture": {
+                        "Aliments": 20,
+                        "Metiers": 10,
+                        "Vehicules": 5
+                         },
+                "Histoires": {
+                        "Animaux": 60,
+                        "Chevaliers": 35
+                }
+    }
+
+s2 = json.dumps(jsonAppetence)
+jdata2 = json.loads(s2)
+doc_ref.set({
+    u'Themes': jdata2,
 })
